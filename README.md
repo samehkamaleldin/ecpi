@@ -1,1 +1,1 @@
-# Predicting The Effects of Chemical Protein Interactions
+# Predicting The Biological Effects of Chemical Protein Interactions

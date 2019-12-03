@@ -20,8 +20,8 @@ def main():
     kg_dp_path = "../data/"
 
     print("Importing dataset files ... ")
-    train_data_raw = load_kg_file(os.path.join(kg_dp_path, "train.txt"))
-    test_data_raw = load_kg_file(os.path.join(kg_dp_path, "test.txt"))
+    train_data_raw = load_kg_file(os.path.join(kg_dp_path, "train.tsv"))
+    test_data_raw = load_kg_file(os.path.join(kg_dp_path, "test.tsv"))
 
     all_data = np.array([[s, p, o] for s, p, o in np.concatenate([train_data_raw, test_data_raw])])
 
@@ -38,9 +38,10 @@ def main():
 
     train_data = dataset.data["train"]
     test_data = dataset.data["test"]
+    all_data_indices = np.concatenate([train_data, test_data])
 
     fn_known_facts = {k: set() for k in range(nb_rels)}
-    for s, p, o in all_data:
+    for s, p, o in all_data_indices:
         fn_known_facts[p].add((s, o))
 
     fn_test_dict = {k: [] for k in np.unique(test_data[:, 1])}
@@ -71,15 +72,6 @@ def main():
     print("Training ... ")
     pipe_model.fit(X=train_data, y=None)
 
-    metrics_per_se = {se_idx: {"ap": .0, "auc-roc": .0, "auc-pr": .0, "p@50": .0} for se_idx in pse_indices}
-
-    se_ap_list = []
-    se_auc_roc_list = []
-    se_auc_pr_list = []
-    se_p50_list = []
-
-    print("================================================================================")
-
     def generate_fn_negatives(fn_idx, neg_data_size):
         """
 
@@ -101,7 +93,7 @@ def main():
 
     rel_results = []
     for idx, rel_idx in enumerate(fn_test_dict):
-        rel_name = dataset.get_relations([rel_idx])[0]
+        rel_name = dataset.get_rel_labels([rel_idx])[0]
         rel_test_data_pos = np.array(fn_test_dict[rel_idx])
         rel_test_size = len(rel_test_data_pos)
 
