@@ -1,7 +1,7 @@
 # Predicting The Biological Effects of Chemical Protein Interactions
 
 ## Overview
-This code contain scripts and data for and AMIA Informatics summit 2020 paper submission which studies the prediction of biological effects of chemical-protein interactions.
+This code contain scripts and data for experiments on the prediction of biological effects of chemical-protein interactions.
 
 ## Requirements
 This repository only require the installation of `tensorflow` (standard or gpu) and the [LibKGE library](https://github.com/samehkamaleldin/libkge). 
@@ -91,17 +91,4 @@ Training ...
 [38] N1:AUROC 1.0000 - N1:AUPR 1.0000   N10:AUROC 1.0000 - N10:AUPR 1.0000      N50:AUROC 1.0000 - N50:AUPR 1.0000      [Count: 20585]  REL:increases__expression
 -----------------------------------------------------------------------------------------------------------
 N1:AUROC 0.8865 - N1:AUPR 0.9360        N10:AUROC 0.8867 - N10:AUPR 0.8514      N50:AUROC 0.8866 - N50:AUPR 0.8039 = [AVERAGE]
-```
-
-## Citation
-If you use the code or the dataset in this repository, please cite the following study
-```
-@article{MohamedAMIA20ECPI,
-  title={Predicting The Effects of Chemical--Protein Interactions On Proteins Using Tensor Factorisation.},
-  author={Sameh K. Mohamed and Aayah Nounu},
-  journal={AMIA Joint Summits on Translational Science proceedings. AMIA Joint Summits on Translational Science},
-  year={2020},
-  volume={2020},
-  pages={?-?}
-}
 ```
